@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ Деда Мороза</title>
+    <style>
+      body {
+        background: linear-gradient(#0c2e52, #1a1a2e);
+        color: white;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+      }
+      
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .back { color: #a3d9ff; text-decoration: none; margin-bottom: 20px; display: block; }
+      .header { text-align: center; margin-bottom: 30px; }
+      h1 { color: #ff9933; margin: 10px 0; }
+      .form { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; }
+      .field { margin-bottom: 15px; }
+      input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid #444;
+        border-radius: 8px;
+        color: white;
+      }
+      
+      .dates {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 10px 0 20px;
+      }
+      .date {
+        padding: 10px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 8px;
+        flex: 1;
+        min-width: 100px;
+        text-align: center;
+        cursor: pointer;
+      }
+      
+      .date.selected {
+        background: rgba(255,153,51,0.3);
+        border: 2px solid #ff9933;
+      }
+      
+      .submit {
+        width: 100%;
+        padding: 15px;
+        background: #ff3366;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 15px;
+      }
+      
+      .success {
+        text-align: center;
+        padding: 30px;
+        background: rgba(0,100,0,0.2);
+        border-radius: 15px;
+        margin-top: 20px;
+        display: none;
+      }
+      .emoji { font-size: 3rem; margin: 10px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="dedmoroz_main.html" class="back">← Назад</a>
+
+      <div class="header">
+        <div class="emoji">🎅</div>
+        <h1>Заказать Деда Мороза</h1>
+        <p style="color: #a3d9ff;">Заполните форму для заказа</p>
+      </div>
+
+      <form class="form" id="orderForm">
+        <div class="field">
+          <label>Ваше имя *</label>
+          <input type="text" required="" placeholder="Иванова Мария">
+        </div>
+
+        <div class="field">
+          <label>Телефон *</label>
+          <input type="tel" required="" placeholder="+7 (999) 123-45-67">
+        </div>
+
+        <div class="field">
+          <label>Имя ребёнка и возраст *</label>
+          <input type="text" required="" placeholder="Андрей, 5 лет">
+        </div>
+
+        <div class="field">
+          <label>Выберите дату *</label>
+          <div class="dates">
+            <div class="date" data-date="24.12">24 дек</div>
+            <div class="date" data-date="30.12">30 дек</div>
+            <div class="date" data-date="31.12">31 дек</div>
+            <div class="date" data-date="02.01">2 янв</div>
+          </div>
+          <input type="hidden" id="date" required="">
+        </div>
+
+        <div class="field">
+          <label>Адрес *</label>
+          <input type="text" required="" placeholder="г. Москва">
+        </div>
+
+        <button type="submit" class="submit">🎄 Отправить</button>
+      </form>
+
+      <div class="success" id="success">
+        <div class="emoji">✨</div>
+        <h2>Спасибо за заказ!</h2>
+        <p>Скоро с вами свяжутся</p>
+        <a href="index.html" style="color: #ffcc00; display: block; margin-top: 20px;">← На главную</a>
+      </div>
+    </div>
+    
+    <script>
+      
+        // Выбор даты
+        document.querySelectorAll('.date').forEach(date => {
+            date.onclick = () => {
+                document.querySelectorAll('.date').forEach(d => d.classList.remove('selected'));
+                date.classList.add('selected');
+                document.getElementById('date').value = date.dataset.date;
+            };
+        });
+        
+        // Отправка формы
+        document.getElementById('orderForm').onsubmit = e => {
+            e.preventDefault();
+            if(!document.getElementById('date').value) {
+                alert('Выберите дату!');
+                return;
+            }
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            
+            // Простой эффект
+            for(let i=0; i<15; i++) {
+                let c = document.createElement('div');
+                c.style.cssText = `position:fixed; width:8px; height:8px; background:${['#ff3366','#ff9933','#ffcc00'][i%3]}; border-radius:50%; left:${Math.random()*100}vw; top:-10px;`;
+                document.body.appendChild(c);
+                c.animate([{transform:'translateY(0)'},{transform:'translateY(100vh)'}], {duration: 2000});
+                setTimeout(()=>c.remove(), 2000);
+            }
+        };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Контакты(Дед Мороз)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * { 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+      }
+      
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f4f4f4;
+        color: #333;
+      }
+      
+      h2 {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      section {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin: 0px auto;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      }
+
+      .menu {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        list-style: none;
+        padding: 0;
+      }
+      .menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        position: relative;
+      }
+      .menu a::after {
+        content: "";
+        display: block;
+        height: 2px;
+        background: #3498db;
+        transform: scaleX(0);
+        transition: transform 0.3s;
+      }
+      .menu a:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* Шапка */
+      .header {
+        background: url('header-bg.jpg') center/cover no-repeat;
+        padding: 20px 40px;
+        color: #fff;
+      }
+      .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .logo { font-size: 28px; font-weight: bold; }
+      .nav a { margin-left: 20px; font-size: 14px; }
+      .phone { color: red; font-weight: bold; }
+
+      /* Контейнер */
+      .container { max-width: 1100px; margin: 0 auto; padding: 40px 15px; }
+
+      h2.section-title {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 30px;
+        color: #c62828;
+      }
+
+      /* Блок актеров */
+      .actors {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin-bottom: 60px;
+      }
+      .actor-card {
+        background: #fafafa;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0,0,0,.08);
+      }
+      .actor-video {
+        position: relative;
+        padding-top: 56.25%;
+        background: #000;
+      }
+      .actor-video iframe {
+        position: absolute;top:0;left:0;width:100%;height:100%;
+        border: 0;
+      }
+      .actor-caption {
+        padding: 10px 15px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      /* Блок программ */
+      .programs-title {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      .programs-sub {
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 30px;
+        color: #777;
+      }
+      .programs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+        gap: 20px;
+      }
+      .program-card {
+        background: #fff5f5;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,.08);
+        overflow: hidden;
+        border-top: 4px solid #c62828;
+      }
+      .program-header {
+        background: #c62828;
+        color: #fff;
+        padding: 12px 16px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .program-body {
+        padding: 16px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .program-meta {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .program-list {
+        margin: 10px 0 0;
+        padding-left:18px;
+      }
+      .program-list li { margin-bottom:4px; }
+
+      /* Футер */
+      .footer {
+        padding: 20px 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #777;
+        background: #fafafa;
+      }
+
+      @media (max-width: 768px) {
+        .header { padding:15px; }
+        .header-top { flex-direction:column; align-items:flex-start; gap:10px; }
+        .nav { display:flex; flex-wrap:wrap; gap:10px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <section>
+      <ul class="menu">
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Цены 2025-2026</a></li>
+        <li><a href="#">Наши костюмы</a></li>
+        <li><a href="#">Фотография</a></li>
+        <li><a href="#">Видеоролики</a></li>
+        <li><a href="#">О службе</a></li>
+        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCyYTDsOmWIymToJPu1kAuuh1c-84f5wOQog&s" style="height:25px; margin-top:-3px;"></li>
+        <span class="phone">8 (495) 646‑80‑10</span>
+      </ul>
+    </section>
+
+    <main class="container">
+
+      <!-- Наши актёры -->
+      <div id="actors">
+        <h2 class="section-title">Наши актёры</h2>
+        <div class="actors">
+          <div class="actor-card">
+            <div class="actor-video">
+              <iframe src="https://vk.com/video_ext.php?oid=-204025452&id=456239256&hash=5f830bae3429a758&hd=3" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="actor-caption">Поздравление №1</div>
+          </div>
+
+          <div class="actor-card">
+            <div class="actor-video">
+              <iframe src="https://vk.com/video_ext.php?oid=-24628179&id=456240757&hash=5bf8b949ab7e2bc4&hd=3" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="actor-caption">Поздравление №2</div>
+          </div>
+
+          <div class="actor-card">
+            <div class="actor-video">
+              <iframe src="https://vk.com/video_ext.php?oid=196704154&id=456239575&hash=541d89515268e982&hd=3" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="actor-caption">Поздравление №3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Программы 2026 -->
+      <section id="prices">
+        <h2 class="section-title">Дед Мороз и Снегурочка на дом 2026</h2>
+        <p class="programs-sub">Выберите подходящую программу</p>
+
+        <div class="programs">
+          <!-- Экспресс-программа -->
+          <article class="program-card">
+            <div class="program-header">Экспресс‑программа</div>
+            <div class="program-body">
+              <div class="program-meta">
+                <span>2 актёра</span>
+                <span>15 минут</span>
+              </div>
+              <p>
+                Оперативный новогодний визит с поздравлениями, небольшими играми и вручением подарков детям.
+              </p>
+              <ul class="program-list">
+                <li>Поздравление от Деда Мороза и Снегурочки</li>
+                <li>Короткие игры и хоровод</li>
+                <li>Фото на память</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Классическая программа -->
+          <article class="program-card">
+            <div class="program-header">Классическая программа</div>
+            <div class="program-body">
+              <div class="program-meta">
+                <span>2 актёра</span>
+                <span>30 минут</span>
+              </div>
+              <p>
+                Полноценный новогодний спектакль с конкурсами, загадками и интерактивом для детей и взрослых.
+              </p>
+              <ul class="program-list">
+                <li>Сценарий с участием детей</li>
+                <li>Интерактивные конкурсы и игры</li>
+                <li>Вручение подарков и общее фото</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      © 2025–2026 Служба выездных поздравлений «Дед Мороз и Снегурочка». Все права защищены.
+    </footer>
+
+  </body>
+</html>

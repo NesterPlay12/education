@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ Деда Мороза | Волшебство к вам домой</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎅</text></svg>">
+    <style>
+      /* === ВСТРОЕННЫЙ CSS === */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0c2e52 0%, #1a1a2e 50%, #16213e 100%);
+        color: #f0f8ff;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Снежинки */
+      .snowflake {
+        position: fixed;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* Контейнер */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Шапка */
+      header {
+        text-align: center;
+        padding: 40px 20px;
+        animation: fadeIn 1.5s ease;
+      }
+
+      .logo {
+        font-size: 3.5rem;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+        background: linear-gradient(90deg, #ff3366, #ff9933);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
+      }
+
+      .subtitle {
+        font-size: 1.3rem;
+        color: #a3d9ff;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      /* Основной контент */
+      .main-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 0;
+      }
+
+      .hero-image {
+        flex: 1;
+        min-width: 300px;
+        text-align: center;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        border: 3px solid #ff3366;
+        transform: perspective(800px) rotateY(-10deg);
+        transition: transform 0.5s;
+      }
+
+      .hero-image img:hover {
+        transform: perspective(800px) rotateY(0deg);
+      }
+
+      .order-info {
+        flex: 1;
+        min-width: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 35px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .features {
+        list-style: none;
+        margin: 25px 0;
+      }
+
+      .features li {
+        padding: 12px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        font-size: 1.1rem;
+      }
+
+      .features li:before {
+        content: "✨ ";
+      }
+
+      .price {
+        font-size: 2.2rem;
+        color: #ffcc00;
+        text-align: center;
+        margin: 25px 0;
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      }
+
+      /* Кнопки */
+      .buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 16px 35px;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, #ff3366, #ff9933);
+        color: white;
+        box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 51, 102, 0.6);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #a3d9ff;
+        border: 2px solid #a3d9ff;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(163, 217, 255, 0.1);
+        transform: translateY(-3px);
+      }
+
+      /* Подвал */
+      footer {
+        text-align: center;
+        margin-top: 60px;
+        padding: 30px;
+        color: #88aadd;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+      }
+
+      /* Анимации */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        h1 { font-size: 2.2rem; }
+        .logo { font-size: 2.8rem; }
+        .subtitle { font-size: 1.1rem; }
+        .btn { padding: 14px 25px; font-size: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Снежинки будут созданы через JS -->
+
+    <div class="container">
+      <header>
+        <div class="logo">🎅</div>
+        <h1>Заказ Деда Мороза</h1>
+        <p class="subtitle">Волшебный праздник для ваших детей! Настоящий Дед Мороз с подарками и поздравлениями прямо у вас дома!</p>
+      </header>
+
+      <main class="main-content">
+        <div class="hero-image">
+          <!-- Декоративное изображение -->
+          <div style="font-size: 300px; line-height: 1; color: #ff3366;">🎄</div>
+          <p style="margin-top: 20px; font-style: italic; color: #a3d9ff;">Создаём новогоднюю сказку вместе с вами!</p>
+        </div>
+
+        <div class="order-info">
+          <h2 style="color: #ffcc00; margin-bottom: 20px;">🎁 Новогоднее Чудо для Вашего Ребёнка</h2>
+
+          <ul class="features">
+            <li>Визит настоящего Деда Мороза и Снегурочки</li>
+            <li>Персональное поздравление для вашего ребёнка</li>
+            <li>Волшебные игры и загадки у ёлки</li>
+            <li>Вручение заранее подготовленного подарка</li>
+            <li>Фотосессия на память о празднике</li>
+            <li>Продолжительность: 40-60 минут</li>
+          </ul>
+
+          <div class="price">от 3 990 ₽</div>
+
+          <p style="text-align: center; color: #a3d9ff; margin-bottom: 20px;">Забронируйте дату заранее, чтобы Дед Мороз успел посетить именно вас!</p>
+
+          <div class="buttons">
+            <a href="form.html" class="btn btn-primary pulse">🎄 Заказать сейчас</a>
+            <a href="contacts.html" class="btn btn-secondary">📞 Контакты</a>
+          </div>
+        </div>
+      </main>
+
+      <footer id="contacts">
+        <p>Телефон: <strong>+7 (999) 123-45-67</strong></p>
+        <p>Email: <strong>dedmoroz@magic.ru</strong></p>
+        <p>Работаем с 15 декабря по 10 января</p>
+        <p style="margin-top: 15px;">© 2025 Новогоднее агентство "Волшебство". Все права защищены.</p>
+      </footer>
+    </div>
+
+    <!-- ВСТРОЕННЫЙ JavaScript -->
+    <script>
+      // Создание снежинок
+      function createSnowflakes() {
+        const snowflakesContainer = document.body;
+        const snowflakeCount = 80;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.classList.add('snowflake');
+
+          // Случайные параметры снежинок
+          const size = Math.random() * 10 + 5;
+          const posX = Math.random() * 100;
+          const opacity = Math.random() * 0.7 + 0.3;
+          const animationDuration = Math.random() * 10 + 10;
+          const delay = Math.random() * 10;
+
+          snowflake.style.width = `${size}px`;
+          snowflake.style.height = `${size}px`;
+          snowflake.style.left = `${posX}vw`;
+          snowflake.style.top = '-20px';
+          snowflake.style.opacity = opacity;
+          snowflake.style.animation = `fall ${animationDuration}s linear ${delay}s infinite`;
+
+          // Добавляем CSS анимацию для падения
+          const style = document.createElement('style');
+          style.textContent = `
+                                @keyframes fall {
+                                    0% {
+                                        transform: translateY(0) rotate(0deg);
+                                        opacity: ${opacity};
+                                    }
+                                    100% {
+                                        transform: translateY(100vh) rotate(360deg);
+                                        opacity: 0;
+                                    }
+                                }
+                            `;
+          document.head.appendChild(style);
+
+          snowflakesContainer.appendChild(snowflake);
+        }
+      }
+
+      // Запуск при загрузке страницы
+      document.addEventListener('DOMContentLoaded', function() {
+        createSnowflakes();
+
+        // Анимация для кнопок при наведении
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+          btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+          });
+          btn.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('pulse')) {
+              this.style.transform = 'translateY(0)';
+            }
+          });
+        });
+
+        // Консольное поздравление
+        console.log('%c🎄 С Новым Годом! 🎅', 'color: #ff3366; font-size: 18px; font-weight: bold;');
+        console.log('%cПусть ваши праздники будут волшебными!', 'color: #a3d9ff; font-size: 14px;');
+      });
+    </script>
+  </body>
+</html>

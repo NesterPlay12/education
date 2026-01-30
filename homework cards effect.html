@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <meta charset="UTF-8">
+    <title>Кинотеатр</title>
+  <head>
+    <h1>Популярные фильмы</h1>
+  </head>
+  <body>
+    <div class="catalog">
+      <div class="card">
+        <div class="back1">
+          <h6>Интерстеллар</h6>
+        </div>
+        <div class="name">
+          <p>Интерстеллар</p>
+        </div>
+        <p>
+          <span>Фантастика, Драма</span>
+          <span style="margin-left: auto;">2014</span>
+        </p>
+        <p>Когда засуха приводит человечество к продовольственному кризису, коллектив исследователей и...</p>
+        <p>
+        <span style="color: gold; font-size: 14px">★★★★★ 8.7/10</span>
+        </p>
+        <button>Смотреть сейчас</button>
+      </div>
+      
+      <div class="card">
+        <div class="back2">
+          <h6>Начало</h6>
+        </div>
+        <div class="name">
+          <p>Начало</p>
+        </div>
+        <p>Фантастика, Боевик
+        <span style="margin-left: auto;">2010</span>
+        </p>
+        <p>Кобб - талантливый вор, лучший в опасном искусстве извлечения: он крадет ценные секреты из глубин...</p>
+        <p>
+        <span style="color: gold; font-size: 14px">★★★★★ 9.1/10</span>
+        </p>
+        <button>Смотреть сейчас</button>
+      </div>
+      
+      <div class="card">
+        <div class="back3">
+          <h6>Остров проклятых</h6>
+        </div>
+        <div class="name">
+          <p>Остров проклятых</p>
+        </div>
+        <p>Триллер, Детектив
+          <span style="margin-left: auto;">2010</span>
+        </p>
+        <p>Два американских судебных пристава отправляются на один из островов в штате Массачусетс...</p>
+        <p>
+        <span style="color: gold; font-size: 14px">★★★★☆ 8.2/10</span>
+        </p>
+        <button>Смотреть сейчас</button>
+      </div>
+    </div>
+
+    <style>
+      body {
+  font-family: Arial, serif;
+  background: #021e55;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #FF9200;
+  margin: 30px;
+  padding: 22px;
+  font-size: 45px;
+}
+
+h6 {
+  font-size: 24px;
+  text-align: center;
+  color: #ccc;
+  margin: 35px;
+  padding: 60px 0;
+}
+
+.name p{
+  font-size: 23px;
+  text-align: left;
+  color: white;
+}
+
+p {
+  font-size: 13px;
+  text-align: left;
+  display: flex;
+  color: #bbb;
+}
+
+.catalog {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 30px auto;
+  gap: 20px;
+  padding: 15px;
+}
+
+.card {
+  background: #1d2e4e;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  padding: 15px;
+  width: 263px;
+  height: 380px;
+  border: 2px solid #333;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card .back1, .back2, .back3 {
+  margin-top: -55px;
+  width: 115%;
+  height: 150px;
+  object-fit: cover;
+  margin-left: -15px;
+}
+
+.card {
+  transition: transform 0.6s;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.65);
+}
+
+.back1 {background: linear-gradient(to right, #005c97, #363795)}
+.back2 {background: linear-gradient(to right, #136a8a, #267871)}
+.back3 {background: linear-gradient(to right, #8e0e00, #1f1c18);}
+
+button {
+  background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 18px rgba(250, 112, 154, 0.2);
+  transition: background 0.4s, transform 0.2s;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #fee140 0%, #fa709a 100%);
+  transform: scale(1.07);
+}
+
+button:active {
+  background: linear-gradient(90deg, #f6d365 0%, #fdff7b 100%);
+  transform: scale(0.97);
+}
+    </style>
+  </body>
+</html>

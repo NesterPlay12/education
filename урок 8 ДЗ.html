@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Практические задания на prompt/alert</title>
+  </head>
+  <body>
+    <h1>Задания на prompt/alert</h1>
+    <div class="button-grid">
+      <button onclick="task1()">1. Имя</button>
+      <button onclick="task2()">2. Возраст</button>
+      <button onclick="task3()">3. Периметр квадрата</button>
+      <button onclick="task4()">4. Площадь круга</button>
+      <button onclick="task5()">5. Скорость движения</button>
+      <button onclick="task6()">6. Конвертер валют</button>
+      <button onclick="task7()">7. Флешка и файлы</button>
+      <button onclick="task8()">8. Шоколадки и сдача</button>
+      <button onclick="task9()">9. Переворот и числа</button>
+      <button onclick="task10()">10. Четность числа</button>
+    </div>
+    
+    <style>
+      body {
+  font-family: sans-serif;
+  background: #f7f8fa;
+  margin: 0;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit), minmax(220px, 1fr);
+  gap: 16px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.button-grid button {
+  padding: 16px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: none;
+  background: #2a77e6;
+  color: white;
+  transition: background 0.2s;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.button-grid button.hover {
+  background: #1658a8;
+}
+    </style>
+    
+    <script>
+      function task1() {
+  const name = prompt("Введите ваше имя:");
+  alert("Привет, " + name + "!");
+}
+
+function task2() {
+  const yearBorn = prompt("Введите год рождения:");
+  const thisYear = 2025;
+  alert("Вам " + (thisYear - Number(yearBorn)) + " лет.");
+}
+
+function task3() {
+  const len = prompt("Введите длину стороны квадрата:");
+  alert("Периметр квадрата: " + (len * 4));
+}
+
+function task4() {
+  const R = prompt("Введите радиус окружности:");
+  const pi = 3.14;
+  alert("Площадь окружности: " + (pi * R * R));
+}
+
+function task5() {
+  const S = prompt("Введите расстояние между городами:");
+  const T = prompt("Введите время за которое хотите добраться:")
+  alert("Вам нужно двигаться со скоростью " + (S / T) + "км/ч");
+}
+
+function task6() {
+  const usd = prompt("Введите валюту в USD:");
+  const course = 0.86;
+  alert("EUR: " + (usd * course));
+}
+
+function task7() {
+  const flash = prompt("Введите объем флешки в ГБ:");
+  const file = 820;
+  alert("Можно вместить " + Math.round(flash / file) + " файлов");
+}
+
+function task8() {
+  const money = prompt("Введите баланс:");
+  const product = prompt("Цена:");
+  const result = Math.trunc(money / product);
+  alert("Вы можете купить " + result + " шоколадок");
+  alert("Сдача: " + (money - (product * result)) + " рублей");
+}
+
+function task9() {
+  const num = prompt("Введите число:");
+  let str = num.toString();
+  let reversedStr = str.split('').reverse().join('');
+  let reversedNum = parseInt(reversedStr, 10);
+  alert(reversedNum);
+}
+
+function task10() {
+  const num = prompt("Введите число:");
+  const number = Math.trunc(num);
+  const isEven = number % 2 === 0;
+  alert(isEven? 'Чётное число' : 'Нечётное число');
+}
+    </script>
+    
+  </body>
+</html>

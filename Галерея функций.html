@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang='ru'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content="width=device-width, initial-scale=1.0">
+    <title>Галерея функций</title>
+  </head>
+  <body>
+    
+    <header>
+      <h1>Функции программирования</h1>
+      <p class="subtitle">5 простых заданий для понимания функций, параметров и return</p>
+    </header>
+    
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Приветствие</a></li>
+        <li><a href="#">Сложение</a></li>
+        <li><a href="#">Четность</a></li>
+        <li><a href="#">Температура (°C / °F)</a></li>
+        <li><a href="#">Генератор чисел</a></li>
+      </ul>
+      <button><img src="https://cdn.onlinewebfonts.com/svg/img_211425.png">&nbsp;Чат</button>
+    </nav>
+    
+    <main>
+      <div class="task" id="task1">
+        <h2>Задание 1: Приветствие</h2>
+        <p class="description">Создайте функцию, которая принимает имя и возвращает приветствие.</p>
+        <div class="input-group">
+          <input type="text" id="nameInput" placeholder="Введите ваше имя">
+          <button onclick="runTask1()">Поприветствовать</button>
+        </div>
+        <div class="result" id="result1"></div>
+        <div class="code">
+          function Приветствие(имя) {<br>
+          &nbsp;&nbsp;return "Привет, " + имя + "!";<br>
+          }
+        </div>
+      </div>
+
+      <div class="task" id="task2">
+        <h2>Задание 2. Калькулятор суммы</h2>
+        <p class="description">Создайте функцию, которая принимает два числа и возвращает их сумму.</p>
+        <div class="input-group">
+          <input type="number" id="num1" placeholder="Первое число">
+          <input type="number" id="num2" placeholder="Второе число">
+          <button onclick="runTask2()">Вычислить сумму</button>
+        </div>
+        <div class="result" id="result2"></div>
+        <div class="code">
+          function СЛОЖИТЬ(a,b) {<br>
+          &nbsp;&nbsp;return a + b;<br>
+          }
+        </div>
+      </div>
+
+      <div class="task" id="task3">
+        <h2>Задание 3. Проверка четности</h2>
+        <p class="description">Создайте функцию, которая проверяет является ли число четным.</p>
+        <div class="input-group">
+          <input type="number" id="evenInput" placeholder="Введите число">
+          <button onclick="runTask3()">Проверить</button>
+        </div>
+        <div class="result" id="result3"></div>
+        <div class="code">
+          function isEven(number) {<br>
+          &nbsp;&nbsp;return number % 2 === 0;<br>
+          }
+        </div>
+      </div>
+
+      <div class="task" id="task4">
+        <h2>Задание 4. Конвертер температуры</h2>
+        <p class="description">Создайте функцию для конвертации градумов Цельсия в Фаренгейты.</p>
+        <div class="input-group">
+          <input type="number" id="celsiusInput" placeholder="Градусы Цельсия">
+          <button onclick="runTask4()">Конвертировать</button>
+        </div>
+        <div class="result" id="result4"></div>
+        <div class="code">
+          function celsiusToFahrenheit(celsius) {<br>
+          &nbsp;&nbsp;return (celsius * 9/5) + 32;<br>
+          }
+        </div>
+      </div>
+
+      <div class="task" id="task5">
+        <h2>Задание 5. Генератор случайных чисел</h2>
+        <p class="description">Создайте функцию, которая генерирует случайное число в заданном диапозоне.</p>
+        <div class="input-group">
+          <input type="number" id="minInput" placeholder="Минимум" value="1">
+          <input type="number" id="maxInput" placeholder="Максимум" value="100">
+          <button onclick="runTask5()">Сгенерировать</button>
+        </div>
+        <div class="result" id="result5"></div>
+        <div class="code">
+          function getRandomNumber(min, max) {<br>
+          &nbsp;&nbsp;return Math.floor(Math.random() * (max - min + 1)) + min;<br>
+          }
+        </div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-item">
+          <div>Задание 1</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress1"></div></div>
+          <div id="status1">Не выполнено</div>
+        </div>
+        <div class="progress-item">
+          <div>Задание 2</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress2"></div></div>
+          <div id="status2">Не выполнено</div>
+        </div>
+        <div class="progress-item">
+          <div>Задание 3</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress3"></div></div>
+          <div id="status3">Не выполнено</div>
+        </div>
+        <div class="progress-item">
+          <div>Задание 4</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress4"></div></div>
+          <div id="status4">Не выполнено</div>
+        </div>
+        <div class="progress-item">
+          <div>Задание 5</div>
+          <div class="progress-bar"><div class="progress-fill" id="progress5"></div></div>
+          <div id="status5">Не выполнено</div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <span>Контакты: +79509132288</span>
+      <li><span>nesterovI@mail.ru</span></li>
+      <li><span>@nesterov_Ilya</span></li>
+    </footer>
+    
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+nav button {
+  padding: 0;
+  border: none;
+  display: flex;
+  margin-left: auto;
+  background: linear-gradient(90deg,#1890ff 20%,#0ad6ff 80%);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 14px;
+  margin-top: -39px;
+  cursor: pointer;
+  box-shadow: 0 2px 18px #1890ff66;
+  transition: background 0.2s, transform 0.15s;
+}
+
+nav button:hover {
+  background: linear-gradient(90deg,#0ad6ff 30%,#1890ff 70%);
+  transform: scale(1.04);
+}
+
+nav button img {
+  display: block;
+  max-width: 30px;
+  margin-top: -4px;
+}
+
+nav {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px auto;
+  max-width: 800px;
+  height: 56px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+  margin-left: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: #3498db;
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.menu a:hover::after {
+  transform: scaleX(1);
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.task {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.task:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+
+.description {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+input, button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+input {
+  flex-grow: 1;
+  min-width: 150px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+button {
+  background-color: #ffcc00;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffdd44;
+  transform: scale(1.05);
+}
+
+.result {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.code {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.progress-item {
+  text-align: center;
+  flex: 1;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #ffcc00;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.completed {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+footer {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  input, button {
+    width: 100%;
+  }
+}
+    </style>
+    
+    <script>
+function Приветствие(имя) {
+  return "Привет, " + имя + "!";
+}
+
+function СЛОЖИТЬ(a,b) {
+  return a + b;
+}
+
+function isEven(number) {
+  return number % 2 === 0;
+}
+
+function celsiusToFahrenheit(celsius) {
+  return (celsius * 9/5) + 32;
+}
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function runTask1() {
+  const name = document.getElementById("nameInput").value;
+  if (name) {
+    const result = Приветствие(name);
+    document.getElementById('result1').textContent = result;
+    updateProgress(1);
+  } else {
+    document.getElementById('result1').textContent = "Пожалуйста, введите имя";
+  }
+}
+
+function runTask2() {
+  const num1 = parseFloat(document.getElementById('num1').value);
+  const num2 = parseFloat(document.getElementById('num2').value);
+  
+  if (!isNaN(num1) && !isNaN(num2)) {
+    const result = СЛОЖИТЬ(num1, num2);
+    document.getElementById('result2').textContent = `${num1} + ${num2}
+= ${result}`
+  updateProgress(2);
+  } else {
+    document.getElementById('result2').textContent = "Пожалуйста, введите оба числа";
+  }
+}
+
+function runTask3() {
+  const number = parseInt(document.getElementById('evenInput').value);
+
+  if (!isNaN(number)) {
+    const result = isEven(number);
+    document.getElementById('result3').textContent = 
+      `Число ${number} является ${result ? 'четным' : 'нечетным'}`;
+    updateProgress(3);
+  } else {
+    document.getElementById('result3').textContent = "Пожалуйста, введите число";
+  }
+}
+
+function runTask4() {
+  const celsius = parseFloat(document.getElementById('celsiusInput').value);
+  
+  if(!isNaN(celsius)) {
+    const fahrenheit = celsiusToFahrenheit(celsius);
+    document.getElementById('result4').textContent = `${celsius}°C = ${fahrenheit.toFixed(1)}°F`;
+    updateProgress(4);
+  } else {
+    document.getElementById('result4').textContent = "Пожалуйста, введите температуру"
+  }
+}
+  
+function runTask5() {
+  const min = parseInt(document.getElementById('minInput').value);
+  const max = parseInt(document.getElementById('maxInput').value);
+
+  if (!isNaN(min) && !isNaN(max) && min < max) {
+    const randomNum = getRandomNumber(min, max);
+    document.getElementById('result5').textContent = 
+      `Случайное число между ${min} и ${max}: ${randomNum}`;
+    updateProgress(5);
+  } else {
+    document.getElementById('result5').textContent = 
+      "Пожалуйста, введите корректный диапазон (минимум < максимум)";
+  }
+}
+
+const completedTasks = new Set();
+
+function updateProgress(taskNumber) {
+  completedTasks.add(taskNumber);
+  
+  document.getElementById(`progress${taskNumber}`).style.width = '100%';
+  
+  document.getElementById(`status${taskNumber}`).textContent = 'Выполнено!';
+  
+  document.getElementById(`status${taskNumber}`).className = 'completed';
+
+  document.getElementById(`task${taskNumber}`).style.backgroundColor = 'rgba(255, 204, 0, 0.2)';
+
+  if (completedTasks.size === 5) {
+    setTimeout(() => {
+      alert('Поздравляем! Вы выполнили все задания! 🎉');
+    }, 500);
+  }
+}
+    </script>
+    
+  </body>
+</html>
+        

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Простой кликер</title>
+    <style>
+        /* Обнуляем стандартные отступы и включаем правильную модель размеров */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Стили для всей страницы */
+        body {
+            font-family: Arial; /* Шрифт Arial для всего текста */
+            background: #f0f0f0; /* Светло-серый фон страницы */
+            padding: 20px; /* Отступы от краев окна браузера */
+            display: flex; /* Включаем flex-расположение для центрирования */
+            justify-content: center; /* Центрируем содержимое по горизонтали */
+            align-items: center; /* Центрируем содержимое по вертикали */
+            min-height: 100vh; /* Минимальная высота = высота окна браузера */
+        }
+        
+        /* Основной контейнер игры */
+        .game-container {
+            background: white; /* Белый фон контейнера */
+            padding: 30px; /* Внутренние отступы контейнера */
+            border-radius: 10px; /* Закругленные углы контейнера */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Тень вокруг контейнера */
+            text-align: center; /* Выравнивание текста по центру */
+            width: 400px; /* Фиксированная ширина контейнера */
+        }
+        
+        /* Заголовок игры */
+        h1 {
+            color: #333; /* Темно-серый цвет текста */
+            margin-bottom: 20px; /* Отступ снизу от заголовка */
+        }
+        
+        /* Блок отображения счета */
+        .score {
+            font-size: 32px; /* Размер шрифта для счета */
+            font-weight: bold; /* Жирное начертание */
+            color: #4CAF50; /* Зеленый цвет текста */
+            margin: 20px 0; /* Отступы сверху и снизу */
+        }
+        
+        /* Основная кнопка для кликов */
+        .click-btn {
+            background: #4CAF50; /* Зеленый фон кнопки */
+            color: white; /* Белый текст на кнопке */
+            border: none; /* Убираем стандартную рамку */
+            padding: 20px 40px; /* Внутренние отступы кнопки */
+            font-size: 24px; /* Размер шрифта на кнопке */
+            border-radius: 50%; /* Делаем кнопку круглой */
+            cursor: pointer; /* Меняем курсор на "указатель" при наведении */
+            margin: 20px 0; /* Отступы сверху и снизу */
+            transition: transform 0.1s; /* Плавная анимация при изменении transform */
+        }
+        
+        /* Эффект при нажатии на кнопку */
+        .click-btn:active {
+            transform: scale(0.95); /* Уменьшаем размер кнопки до 95% */
+        }
+        
+        /* Кнопки улучшений */
+        .upgrade {
+            background: #2196F3; /* Синий фон кнопок улучшений */
+            color: white; /* Белый текст на кнопках */
+            border: none; /* Убираем стандартную рамку */
+            padding: 10px 20px; /* Внутренние отступы */
+            margin: 5px; /* Внешние отступы между кнопками */
+            border-radius: 5px; /* Закругленные углы */
+            cursor: pointer; /* Курсор "указатель" при наведении */
+            width: 100%; /* Ширина на весь доступный контейнер */
+        }
+        
+        /* Стили для отключенных кнопок улучшений */
+        .upgrade:disabled {
+            background: #ccc; /* Серый фон для отключенных кнопок */
+            cursor: not-allowed; /* Курсор "недоступно" для отключенных кнопок */
+        }
+        
+        /* Информационный блок */
+        .info {
+            margin-top: 20px; /* Отступ сверху от предыдущего элемента */
+            color: #666; /* Серый цвет текста */
+        }
+      /* Стили для всей формы */
+.form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  animation: formGlow 3s infinite alternate;
+}
+
+.form:hover {
+  box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Анимация свечения формы */
+@keyframes formGlow {
+  0% {
+    border-color: rgba(255, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+  }
+  100% {
+    border-color: rgba(255, 50, 50, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 50, 50, 0.4);
+  }
+}
+
+/* Поля ввода в форме */
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  outline: none;
+  border-color: #ff3333;
+  box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.2);
+  transform: scale(1.02);
+}
+
+/* Кнопка в форме */
+form button {
+  background: linear-gradient(45deg, #ff0000, #ff3333, #cc0000);
+  color: white;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+  background: linear-gradient(45deg, #ff3333, #ff0000, #ff3333);
+}
+
+form button:active {
+  transform: translateY(1px);
+}
+
+/* Анимация пульсации кнопки */
+@keyframes pulse {
+  0% { box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); }
+  50% { box-shadow: 0 4px 25px rgba(255, 0, 0, 0.6); }
+  100% { box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); }
+}
+
+form button {
+  animation: pulse 2s infinite;
+}
+
+/* Эффект блеска на кнопке */
+form button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+form button:hover::after {
+  opacity: 1;
+  animation: shine 1.5s ease;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Заголовок формы */
+form h2 {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { color: #ff0000; }
+  100% { color: #ff6666; }
+}
+
+/* Метки (labels) */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+form label:hover {
+  color: #ff3333;
+}
+
+/* Анимация появления формы */
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+form {
+  animation: formAppear 0.8s ease-out;
+}
+    </style>
+</head>
+<body>
+    <!-- Основной контейнер для всей игры -->
+    <div class="game-container">
+        <!-- Главный заголовок игры -->
+        <h1>Простой кликер</h1>
+        
+        <!-- Блок для отображения текущего счета -->
+        <div class="score" id="score">0</div>
+        
+        <!-- Основная кнопка для набора очков -->
+      <button class="click-btn" id="click-btn">КЛИКАЙ!</button>
+        
+        <!-- Контейнер для кнопок улучшений -->
+        <div id="upgrades">
+            <!-- Кнопка покупки автокликера - при клике вызывает buyUpgrade(1) -->
+            <button class="upgrade" onclick="buyUpgrade(1)">Автокликер (10 очков)<span id="upgrade1-count">&nbsp;[0]</span></button>
+            
+            <!-- Кнопка улучшения силы клика - при клике вызывает buyUpgrade(2) -->
+            <button class="upgrade" onclick="buyUpgrade(2)">+2 за клик (50 очков)<span id="upgrade2-count">&nbsp;[0]</span></button>
+            
+            <!-- Кнопка умножения всех бонусов - при клике вызывает buyUpgrade(3) -->
+            <button class="upgrade" onclick="buyUpgrade(3)">x2 все бонусы (100 очков)<span id="upgrade3-count">&nbsp;[0]</span></button>
+        </div>
+        <form action="https://codepen.io/tcsarvta-the-lessful" method="get">
+    <button class="button" type="submit">Перейти</button>
+</form>
+        <!-- Информационный блок с количеством кликов в секунду -->
+        <div class="info">
+            Кликов в секунду: <span id="cps">0</span>
+        </div>
+    </div>
+
+    <script>
+        // === ПЕРЕМЕННЫЕ ИГРЫ ===
+        
+        // Текущее количество очков игрока
+        let score = 0;
+        
+        // Количество очков, получаемое за один клик
+        let clickPower = 1;
+        
+        // Количество очков, получаемое автоматически каждую секунду
+        let pointsPerSecond = 0;
+        
+        // === МАССИВ УЛУЧШЕНИЙ ===
+        // Каждое улучшение - объект с параметрами:
+        let upgrades = [
+            { id: 1, cost: 10, count: 0, power: 1 },  // Улучшение 1: автокликер
+            { id: 2, cost: 50, count: 0, power: 2 },  // Улучшение 2: +2 за клик
+            { id: 3, cost: 100, count: 0, power: 2 }  // Улучшение 3: x2 все бонусы
+        ];
+        
+        // === ПОЛУЧЕНИЕ ССЫЛОК НА HTML-ЭЛЕМЕНТЫ ===
+        
+        // Элемент для отображения счета
+        const scoreElement = document.getElementById('score');
+        
+        // Элемент для отображения кликов в секунду
+        const cpsElement = document.getElementById('cps');
+        
+        // Основная кнопка для кликов
+        const clickBtn = document.getElementById('click-btn');
+        
+        // === ОБРАБОТЧИК КЛИКА ПО ОСНОВНОЙ КНОПКЕ ===
+        
+        // При клике на кнопку:
+        clickBtn.onclick = function() {
+            // Увеличиваем счет на значение clickPower
+            score += clickPower;
+            // Обновляем отображение интерфейса
+            updateUI();
+        };
+        
+        // === ФУНКЦИЯ ПОКУПКИ УЛУЧШЕНИЯ ===
+        
+        // Функция вызывается при клике на кнопку улучшения
+        function buyUpgrade(id) {
+            // Находим объект улучшения по его id
+            const upgrade = upgrades.find(u => u.id === id);
+            
+            // Проверяем, хватает ли очков для покупки
+            if (score >= upgrade.cost) {
+                // Вычитаем стоимость из очков
+                score -= upgrade.cost;
+                // Увеличиваем счетчик купленных улучшений
+                upgrade.count++;
+                upgrade.cost = Math.round(upgrade.cost * 1.5);
+                
+                // Применяем эффект улучшения в зависимости от его id
+                if (id === 1) {
+                  document.getElementById('upgrade1-count').textContent = `[${upgrade.count}]`;
+                    // Улучшение 1: добавляем автокликер
+                    pointsPerSecond += upgrade.power;
+                } else if (id === 2) {
+                  document.getElementById('upgrade2-count').textContent = `[${upgrade.count}]`;
+                    // Улучшение 2: увеличиваем силу клика
+                    clickPower += upgrade.power;
+                } else if (id === 3) {
+                  document.getElementById('upgrade3-count').textContent = `[${upgrade.count}]`;
+                    // Улучшение 3: удваиваем все бонусы
+                    pointsPerSecond *= 2;
+                    clickPower *= 2;
+                }
+                
+                // Обновляем интерфейс
+                updateUI();
+            }
+        }
+        
+        // === ФУНКЦИЯ ОБНОВЛЕНИЯ ИНТЕРФЕЙСА ===
+        
+        // Обновляет все отображаемые значения на странице
+        function updateUI() {
+            // Обновляем отображение счета
+            scoreElement.textContent = score;
+            // Обновляем отображение кликов в секунду
+            cpsElement.textContent = pointsPerSecond;
+          
+          document.querySelectorAll('.upgrade')[0].innerHTML = 
+            `Автокликер (${upgrades[0].cost} очков) <span id="upgrade1-count">[${upgrades[0].count}]</span>`;
+
+          document.querySelectorAll('.upgrade')[1].innerHTML = 
+            `+2 за клик (${upgrades[1].cost} очков) <span id="upgrade2-count">[${upgrades[1].count}]</span>`;
+
+          document.querySelectorAll('.upgrade')[2].innerHTML = 
+            `x2 все бонусы (${upgrades[2].cost} очков) <span id="upgrade3-count">[${upgrades[2].count}]</span>`;
+
+        }
+        
+        // === ИГРОВОЙ ЦИКЛ ===
+        
+        // setInterval вызывает функцию каждые 1000 миллисекунд (1 секунду)
+        setInterval(function() {
+            // Добавляем очки, которые генерируются автоматически
+            score += pointsPerSecond;
+            // Обновляем интерфейс
+            updateUI();
+        }, 1000);
+        
+        // === ИНИЦИАЛИЗАЦИЯ ИГРЫ ===
+        
+        // Вызываем updateUI при загрузке страницы для начального отображения
+        updateUI();
+    </script>
+</body>
+</html>
