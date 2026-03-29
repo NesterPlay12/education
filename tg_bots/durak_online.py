@@ -927,7 +927,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-    TOKEN = "7631600375:AAFIqfg5HgkIHsjnxZ4cDxXTUyNYwZS7uk8"
+    TOKEN = ""
 
     app = Application.builder().token(TOKEN).build()
 
