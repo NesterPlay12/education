@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="avatar">👤</div>
+    <div class="username">{{ session.user }}</div>
+    <div style="text-align:center;">
+        <a href="/" class="btn btn-secondary">На главную</a>
+        <a href="/logout" class="btn btn-danger">Выйти</a>
+    </div>
+{% endblock %}
